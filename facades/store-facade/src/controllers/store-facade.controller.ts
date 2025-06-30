@@ -3,20 +3,18 @@
 import {inject} from '@loopback/core';
 import { juggler } from '@loopback/repository';
 import { get } from '@loopback/rest';
-import {Store} from '../services';
+import {ConnectorService} from '../services';
 
 
 export class StoreFacadeController {
   constructor(
-      @inject('datasources.Product') private dataSource: juggler.DataSource,
-       @inject('services.Store') protected geoService: Store,
+       @inject('services.Store') protected storeService: ConnectorService,
   ) {}
 
   @get('/collectStoreData')
   async getGlobalData(): Promise<any> {
-    const restConnector: any = this.dataSource.connector;
-    const products = await restConnector.getProducts();
-    const orders = await restConnector.getOrders();
+    const products = await this.storeService.getProducts();
+    const orders = await this.storeService.getOrders();
     return {
       products,
       orders
