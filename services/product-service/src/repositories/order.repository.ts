@@ -1,7 +1,7 @@
 import {inject} from '@loopback/core';
 import {DefaultCrudRepository} from '@loopback/repository';
 import {PgDataSource} from '../datasources';
-import {Order, OrderRelations} from '../models';
+import {Order, OrderRelations} from 'order-service';
 
 export class OrderRepository extends DefaultCrudRepository<
   Order,

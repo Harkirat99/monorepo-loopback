@@ -1,5 +1,5 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Order} from './order.model';
+import {Order} from 'order-service';
 
 @model({
   name: "products"
