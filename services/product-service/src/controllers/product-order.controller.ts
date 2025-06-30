@@ -16,9 +16,9 @@ import {
   requestBody,
 } from '@loopback/rest';
 import {
-  Product,
-  Order,
+  Product
 } from '../models';
+import { Order } from "order-service"
 import {ProductRepository} from '../repositories';
 
 export class ProductOrderController {

@@ -1,9 +1,9 @@
 // Uncomment these imports to begin using these cool features!
 
 import {inject} from '@loopback/core';
-import { juggler } from '@loopback/repository';
-import { get } from '@loopback/rest';
+import { get, getModelSchemaRef, post, requestBody, response } from '@loopback/rest';
 import {ConnectorService} from '../services';
+import { Order } from 'order-service';
 
 
 export class StoreFacadeController {
@@ -21,4 +21,27 @@ export class StoreFacadeController {
     };
   }
 
+  @post('/createOrder')
+  @response(200, {
+    description: 'Order model instance',
+    content: {'application/json': {schema: getModelSchemaRef(Order)}},
+  })
+  async create(
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Order, {
+            title: 'NewOrder',
+            exclude: ['id'],
+          }),
+        },
+      },
+    })
+        order: Omit<Order, 'id'>,
+
+  ) : Promise<any> {
+
+    return this.storeService.createOrder(order)
+    // return this.orderRepository.create(order);
+  }
 }

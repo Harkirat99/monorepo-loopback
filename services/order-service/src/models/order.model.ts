@@ -21,6 +21,12 @@ export class Order extends Entity {
   })
   amount?: number;
 
+  @property({
+    type: 'number',
+    name: "product_id"
+  })
+  productId?: number;
+
 
   constructor(data?: Partial<Order>) {
     super(data);

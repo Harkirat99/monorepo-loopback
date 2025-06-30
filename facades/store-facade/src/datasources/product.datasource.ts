@@ -28,6 +28,16 @@ const config = {
         getOrders: [],
       },
     },
+    {
+      template: {
+        method: 'POST',
+        url: 'http://127.0.0.1:3002/orders',
+         body: '{body}',
+      },
+      functions: {
+        createOrder: ['body'],
+      },
+    },
   ],
 };
 
