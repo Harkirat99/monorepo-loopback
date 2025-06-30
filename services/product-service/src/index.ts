@@ -4,6 +4,9 @@ export * from './application';
 import dotenv from 'dotenv';
 dotenv.config();
 
+
+export * from './models';
+
 export async function main(options: ApplicationConfig = {}) {
   const app = new ProductServiceApplication(options);
   await app.boot();
